@@ -1,0 +1,34 @@
+@startuml
+class ControlDeFinanzas{
+
+    - transacciones: ArrayList<Transaccion>
+    + agregarTransaccion(fecha: LocalDate, descripcion: String, ingreso: double, egreso: double)
+    + mostrarReporte()
+}
+class Transaccion{
+    - fecha : LocalDate
+    - descripcion : String
+    - ingreso : double
+    - egreso : double
+    + getFecha()
+    + getDescripcion()
+    + getIngreso()
+    + getEgreso()
+    + getSaldo()
+    + toString()
+
+}
+class FechaInvalidaException{
+    + fechaInvalidaException(String)
+}
+class ValorNegativoException{
+    + valorNegativoException(String)
+}
+class java.lang.Exception{}
+ControlDeFinanzas --> Transaccion
+Transaccion ..> FechaInvalidaException
+Transaccion ..> ValorNegativoException
+FechaInvalidaException --|> java.lang.Exception
+ValorNegativoException --|> java.lang.Exception
+
+@enduml
